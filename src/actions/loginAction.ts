@@ -1,0 +1,8 @@
+export const simpleAction = (dispatch: any) => {
+    dispatch({
+     type: 'SIMPLE_ACTION',
+     payload: 'result_of_simple_action'
+    })
+   }
+
+   export const LOGIN = (userData: any) => { return { type: 'LOGIN', payload: userData }};

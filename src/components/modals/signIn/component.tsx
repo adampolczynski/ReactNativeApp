@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Button, Text, TextInput, View, ToastAndroid } from 'react-native';
+// import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ModalWrapper from '../modalWrapper';
 import axios from 'axios';
+import { store } from '../../../createReduxStore';
+import { LOGIN } from '../../../actions/loginAction';
 
-const apiUrl: string = 'http://192.168.2.131:4000/api';
+const apiUrl: string = 'http://192.168.43.251:4000/api';
 
 const styles = {
     searchSection: {
@@ -35,7 +37,7 @@ export class SignInModal extends React.Component<{ changeModal: Function },{ ema
         this.signIn = this.signIn.bind(this);
     }
 
-    async signIn(method) {
+    async signIn(method: string) {
         const x = await axios.post(
             `${apiUrl}/login`, 
             {
@@ -49,9 +51,15 @@ export class SignInModal extends React.Component<{ changeModal: Function },{ ema
             }
         );
         if (x.data.success) {
-            console.log('login success');
+            console.log('Login success');
+            store.dispatch(LOGIN(x.data.data));
+            ToastAndroid.showWithGravity(
+            'Logged into the life oportunity :)',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+            );
         }
-        console.log(x.data);
+        console.log(store.getState());
     }
     render() {
         return (
@@ -69,7 +77,8 @@ export class SignInModal extends React.Component<{ changeModal: Function },{ ema
                     <View style={{ height: 120, borderWidth: 1, borderColor: 'black' }}>
                         <View style={styles.searchSection}>
                             <Icon style={styles.searchIcon} name="envelope" size={20} color="#000"/>
-                            <TextInput 
+                            <TextInput
+                                keyboardType={'email-address'} 
                                 style={[styles.input]}
                                 onChangeText={(email) => this.setState({email})}
                                 value={this.state.email}
@@ -81,6 +90,7 @@ export class SignInModal extends React.Component<{ changeModal: Function },{ ema
                         <View style={styles.searchSection}>
                             <Icon style={styles.searchIcon} name="key" size={20} color="#000"/>
                             <TextInput 
+                                secureTextEntry={true}                               
                                 style={[styles.input]}
                                 onChangeText={(pwd) => this.setState({pwd})}
                                 value={this.state.pwd}

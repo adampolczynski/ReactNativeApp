@@ -1,10 +1,15 @@
-export default (state = false, action:any) => {
-    switch (action.type) {
-     case 'IS_LOGGED_IN':
+export default (state = { isLoggedIn: false }, action: any) => {
+  switch (action.type) {
+    case 'LOGIN':
+      console.log('LOGIN ACTION')
       return {
-       result: action.payload
+        ...state, isLoggedIn: true
       }
-     default:
+    case 'LOGOUT':
+      return {
+        ...state, isLoggedIn: false
+      }
+    default:
       return state
-    }
-   }
+  }
+}

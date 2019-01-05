@@ -13,12 +13,10 @@ export default combineReducers({
         case 'SOMETHING':
             console.log(initial);
             console.warn(action);
-            return {
-                result: action.payload
-            }
+            return true;
         default:
         console.log(action);
-            return initial;
+            return false;
      }
  }
 });
