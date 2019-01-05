@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { AppState, View, Button } from 'react-native';
-import { HeaderLoggedOut } from './header/loggedOut';
+import Header from './header/component';
 import { ModalConductor } from './modals/modalConductor';
 import { connect } from 'react-redux';
 import { store } from '../createReduxStore';
@@ -41,7 +41,7 @@ export class MainScreen extends Component<{}, { appState: any, isLoggedIn: boole
     return (
       <View>
         <ModalConductor changeModal={this.changeModal} currentModal={this.state.currentModal}></ModalConductor>        
-        <HeaderLoggedOut changeModal={this.changeModal}></HeaderLoggedOut>
+        <Header changeModal={this.changeModal} />
         
       </View>
     );

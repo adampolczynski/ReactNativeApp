@@ -6,8 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { HeaderLoggedIn } from './loggedIn';
 import { HeaderLoggedOut } from './loggedOut';
 
+import { connect } from 'react-redux';
 
-export class Header extends Component<{ isLoggedIn: boolean }, {}> {
+class Header extends Component<{ changeModal: Function, isLoggedIn: boolean }, {}> {
   constructor(props: { isLoggedIn: boolean }) {
     super(props);
   }
@@ -17,23 +18,22 @@ export class Header extends Component<{ isLoggedIn: boolean }, {}> {
 
     if (this.props.isLoggedIn) {
         return(
-            <HeaderLoggedIn changeModal={() => {}}/>
+            <HeaderLoggedIn changeModal={this.props.changeModal}/>
         )
     } else {
         return(
-            <HeaderLoggedOut changeModal={() => {}}/>
+            <HeaderLoggedOut changeModal={this.props.changeModal}/>
         )
     }
-    return (
-      <View>
-        <View style={{flex: 0.2}}>
-            <Text>Login data....</Text>
-        </View>
-      
-      </View>
-    );
   }
 }
 
-// skip this line if using Create React Native App
-// AppRegistry.registerComponent('WelcomeScreen', () => WelcomeScreen);
+const mapStateToProps = (state) => {
+    console.log('Header map state to props: ' + state.isLoggedIn)
+    console.log('Local prop: ' + state.changeModal)
+    return {
+        isLoggedIn: state.isLoggedIn,
+    }
+  }
+
+export default connect(mapStateToProps)(Header);
