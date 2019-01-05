@@ -13,24 +13,22 @@ export class MainScreen extends Component<{}, { appState: any, isLoggedIn: boole
     this.state = { appState: AppState.currentState, isLoggedIn: false, currentModal: 'WELCOME' };
     this.changeModal = this.changeModal.bind(this);
 
-    this.checkIfLoggedIn();
-    console.warn(store.getState())    
-  }
-
-  checkIfLoggedIn() {
   }
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
+    console.log('Main on mount, logged in: ' + store.getState().isLoggedIn);
+    console.log('Main on mount, local state logged in: ' + this.state.isLoggedIn);
+
   }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
-  _handleAppStateChange = (nextAppState) => {
+  _handleAppStateChange = (nextAppState: string) => {
     if (this.state.appState.match(/active/) && nextAppState === 'background') {
-      console.log('App closed!')
+      console.log('App closing!')
     }
     this.setState({appState: nextAppState});
   }
