@@ -16,7 +16,7 @@ export class HeaderLoggedIn extends Component<{ changeModal: Function }> {
     return (
       <View>
         <View style={{flex: 0.2}}>
-            <Text>Login data....</Text>
+            <Text style={{justifyContent: 'center'}}>Login data....</Text>
         </View>
       
       </View>

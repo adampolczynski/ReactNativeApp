@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ModalWrapper from '../modalWrapper';
 import axios from 'axios';
 import { store } from '../../../createReduxStore';
-import { LOGIN } from '../../../actions/loginAction';
+import { loginAction } from '../../../actions/actions';
 
 const apiUrl: string = 'http://192.168.43.251:4000/api';
 
@@ -29,7 +29,12 @@ const styles = {
     }
 }
 
-export class SignInModal extends React.Component<{ changeModal: Function },{ email: string, pwd: string }> {
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         logIn: () => dispatch(loginAction(true))
+//     }
+// }
+export class SignInModal extends React.Component<{ changeModal: Function, logIn: Function },{ email: string, pwd: string }> {
     constructor(props: any) {
         super(props);
 
@@ -52,12 +57,13 @@ export class SignInModal extends React.Component<{ changeModal: Function },{ ema
         );
         if (x.data.success) {
             console.log('Login success');
-            store.dispatch(LOGIN(x.data.data));
+            store.dispatch(loginAction(x.data.data));
             ToastAndroid.showWithGravity(
             'Logged into the life oportunity :)',
             ToastAndroid.SHORT,
             ToastAndroid.CENTER,
             );
+            // this.props.logIn();
         }
         console.log(store.getState());
     }

@@ -2,16 +2,19 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 import { IState } from './types/IState';
+import { IUserData } from './types/IUserData';
+
+
+const userData: IUserData = {
+  user: null,
+  token: 'adssadasd'
+}
 
 const store = createStore(
-  rootReducer,
-  {
-    isLoggedIn: false,
-    userData: {},
-    modalVisible: false
-  },
-  applyMiddleware(thunk)
-);
+    rootReducer,
+    
+    applyMiddleware(thunk)
+  );
 
 const handleChange = () => {
   console.log('Redux state changed');

@@ -60,6 +60,3 @@ export class HeaderLoggedOut extends Component<{ changeModal: Function }> {
     );
   }
 }
-
-// skip this line if using Create React Native App
-// AppRegistry.registerComponent('WelcomeScreen', () => WelcomeScreen);

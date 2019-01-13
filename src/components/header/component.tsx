@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { AppRegistry, Alert, Button, Image, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { HeaderLoggedIn } from './loggedIn';
@@ -29,8 +28,6 @@ class Header extends Component<{ changeModal: Function, isLoggedIn: boolean }, {
 }
 
 const mapStateToProps = (state) => {
-    console.log('Header map state to props: ' + state.isLoggedIn)
-    console.log('Local prop: ' + state.changeModal)
     return {
         isLoggedIn: state.isLoggedIn,
     }

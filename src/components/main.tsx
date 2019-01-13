@@ -4,34 +4,34 @@ import { AppState, View, Button } from 'react-native';
 import Header from './header/component';
 import { ModalConductor } from './modals/modalConductor';
 import { connect } from 'react-redux';
-import { store } from '../createReduxStore';
 
-export class MainScreen extends Component<{}, { appState: any, isLoggedIn: boolean, currentModal: string }> {
+export class MainScreen extends Component<{}, { isLoggedIn: boolean, currentModal: string, modalOpts: any }> {
   constructor(props: { prop: boolean }) {
     super(props);
 
-    this.state = { appState: AppState.currentState, isLoggedIn: false, currentModal: 'WELCOME' };
     this.changeModal = this.changeModal.bind(this);
 
   }
 
   componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
-    console.log('Main on mount, logged in: ' + store.getState().isLoggedIn);
-    console.log('Main on mount, local state logged in: ' + this.state.isLoggedIn);
+    //AppState.addEventListener('change', this._handleAppStateChange);
+    console.log(this.state)
+    console.log(JSON.stringify(this.props))
+    // console.log('Main on mount, logged in: ' + store.getState().isLoggedIn);
+    // console.log('Main on mount, local state logged in: ' + this.state.isLoggedIn);
 
   }
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-  }
+  // componentWillUnmount() {
+  //   AppState.removeEventListener('change', this._handleAppStateChange);
+  // }
 
-  _handleAppStateChange = (nextAppState: string) => {
-    if (this.state.appState.match(/active/) && nextAppState === 'background') {
-      console.log('App closing!')
-    }
-    this.setState({appState: nextAppState});
-  }
+  // _handleAppStateChange = (nextAppState: string) => {
+  //   if (this.state.appState.match(/active/) && nextAppState === 'background') {
+  //     console.log('App closing!')
+  //   }
+  //   //this.setState({appState: nextAppState});
+  // }
 
   changeModal(name: string) {
     this.setState({ currentModal: name });
@@ -40,7 +40,7 @@ export class MainScreen extends Component<{}, { appState: any, isLoggedIn: boole
   render() {
     return (
       <View>
-        <ModalConductor changeModal={this.changeModal} currentModal={this.state.currentModal}></ModalConductor>        
+        <ModalConductor changeModal={this.changeModal} currentModal={'asd'}></ModalConductor>        
         <Header changeModal={this.changeModal} />
         
       </View>
@@ -48,4 +48,10 @@ export class MainScreen extends Component<{}, { appState: any, isLoggedIn: boole
   }
 }
 
-export default connect()(MainScreen);
+const mapStateToProps = state => {
+  return { 
+    isLoggedIn: state.isLoggedIn,
+    modalOpts: state.modalOpts
+  };
+}
+export default connect(mapStateToProps)(MainScreen);
