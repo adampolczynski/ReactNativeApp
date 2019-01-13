@@ -9,30 +9,26 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { connect } from 'react-redux';
+import { modalVisibleAction } from '../../actions/actions';
+import { store } from '../../createReduxStore';
 
 // import { PropTypes } from 'prop-types';
 
-class ModalWrapper extends Component<
-  { hideText: string, title: string },
-  { modalVisible: boolean }
-> {
+class ModalWrapper extends Component<{ modalOpts: { visible: boolean, name: string }, hideText: string },{}> {
   constructor(props: any) {
     super(props);
     this.state = { modalVisible: true };
   }
 
-  setModalVisible(vis: boolean) {
-    this.setState({ modalVisible: vis });
-  }
 
   render() {
     return (
       <Modal
         animationType="slide"
         transparent={false}
-        visible={this.state.modalVisible}
+        visible={this.props.modalOpts.visible}
         onRequestClose={() => {
-          this.setModalVisible(false);
+          store.dispatch(modalVisibleAction(false))
         }}
       >
         <View style={{ marginTop: 22, padding: 20, flex: 1 }}>
@@ -45,7 +41,7 @@ class ModalWrapper extends Component<
             <Button
                 title={this.props.hideText}
                 onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
+                  store.dispatch(modalVisibleAction(!this.props.modalOpts.visible));
                 }}
               />
             </View>
@@ -58,7 +54,7 @@ class ModalWrapper extends Component<
 
 const mapStateToProps = (state: any) => {
   return {
-      modalVisible: state.modalVisible,
+      modalOpts: state.modalOpts,
   }
 }
 

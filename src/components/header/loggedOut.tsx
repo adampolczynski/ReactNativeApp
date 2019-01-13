@@ -3,6 +3,8 @@ import { Component } from 'react';
 import { AppRegistry, Alert, Button, Image, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { modalNameAction } from '../../actions/actions';
+import { store } from '../../createReduxStore';
 const styles = StyleSheet.create({
   row: {
     flex: 1,
@@ -52,9 +54,9 @@ export class HeaderLoggedOut extends Component {
         {/* <Icon.Button backgroundColor="#3b5998">
           <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
         </Icon.Button> */}
-        <Button title={'Sign in'} onPress={() => this.props.changeModal('SIGN_IN')} />
+        <Button title={'Sign in'} onPress={() => store.dispatch(modalNameAction('SIGN_IN'))} />
           <Text style={{textAlign: 'center'}}>or</Text>
-          <Button title={'Create account'} onPress={() => this.props.changeModal('REGISTER')} />
+          <Button title={'Create account'} onPress={() => store.dispatch(modalNameAction('REGISTER'))} />
         </View>
       </View>
     );

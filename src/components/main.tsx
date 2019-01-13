@@ -2,14 +2,15 @@ import * as React from 'react';
 import { Component } from 'react';
 import { AppState, View, Button } from 'react-native';
 import Header from './header/component';
-import { ModalConductor } from './modals/modalConductor';
+import ModalConductor from './modals/modalConductor';
 import { connect } from 'react-redux';
+import { IModalOpts } from '../types/IModalOpts';
+import { modalNameAction } from '../actions/actions';
+import { store } from '../createReduxStore';
 
-class MainScreen extends Component {
+class MainScreen extends Component<{ isLoggedIn: boolean },{}> {
   constructor(props) {
     super(props);
-
-    this.changeModal = this.changeModal.bind(this);
 
   }
 
@@ -21,25 +22,10 @@ class MainScreen extends Component {
 
   }
 
-  // componentWillUnmount() {
-  //   AppState.removeEventListener('change', this._handleAppStateChange);
-  // }
-
-  // _handleAppStateChange = (nextAppState: string) => {
-  //   if (this.state.appState.match(/active/) && nextAppState === 'background') {
-  //     console.log('App closing!')
-  //   }
-  //   //this.setState({appState: nextAppState});
-  // }
-
-  changeModal(name: string) {
-    this.setState({ currentModal: name });
-  }
-
   render() {
     return (
       <View>
-        <ModalConductor currentModal={this.props.modalOpts.name}></ModalConductor>        
+        <ModalConductor/>        
         <Header />
         
       </View>
@@ -50,7 +36,6 @@ class MainScreen extends Component {
 const mapStateToProps = (state: any) => {
   return { 
     isLoggedIn: state.isLoggedIn,
-    modalOpts: state.modalOpts
   };
 }
 

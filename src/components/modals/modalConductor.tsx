@@ -2,15 +2,16 @@ import * as React from 'react';
 import {SignInModal} from './signIn/component';
 import {WelcomeModal} from './welcome/component';
 import { RegisterModal } from './register/component';
+import { connect } from 'react-redux';
+import { IModalOpts } from '../../types/IModalOpts';
 
-export class ModalConductor extends React.Component<{ currentModal: string }, {}> {
+class ModalConductor extends React.Component<{ modalOpts: IModalOpts}, {}> {
     constructor(props) {
         super(props);
-        console.log('current modal: ' + this.props.currentModal)
     }   
 
     render() {
-        switch (this.props.currentModal) {
+        switch (this.props.modalOpts.name) {
             case 'WELCOME':
               return <WelcomeModal {...this.props}/>;
         
@@ -28,3 +29,11 @@ export class ModalConductor extends React.Component<{ currentModal: string }, {}
           }
     }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+      modalOpts: state.modalOpts,
+  }
+}
+
+export default connect(mapStateToProps)(ModalConductor)
