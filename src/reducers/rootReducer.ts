@@ -3,38 +3,55 @@
 // import simpleReducer from './simpleReducer';
 // import isLoggedIn from './isLoggedInReducer';
 // import userData from './userDataReducer';
-import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME } from '../actions/acion-types';
+import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME, USER_DATA } from '../actions/acion-types';
 
-const initialState = { 
+const initialState = {
     isLoggedIn: false,
     modalOpts: {
         visible: true,
         name: 'WELCOME'
+    },
+    userData: {
+        user: {
+            name: 'asd',
+            surname: 'asddsds',
+            email: 'asdasdas'
+        },
+        token: 'asdasdasdasddsaas'
     }
- };
+};
 
 export default (state = initialState, action: any) => {
     console.log('root reducer')
     console.log(JSON.stringify(initialState))
     switch (action.type) {
         case USER_LOGIN:
-            return Object.assign({}, state, {
-                isLoggedIn: action.payload
-            });
+            return Object.assign({}, state, 
+                {
+                    isLoggedIn: action.payload
+                });
         case MODAL_VISIBLE:
             return Object.assign({}, state,
-            {
-                modalOpts: {
-                    visible: action.payload
-                }
-            })
+                {
+                    modalOpts: {
+                        visible: action.payload
+                    }
+                });
         case MODAL_NAME:
             return Object.assign({}, state,
-            {
-                modalOpts: {
-                    name: action.payload
-                }
-            })
+                {
+                    modalOpts: {
+                        name: action.payload
+                    }
+                });
+        case USER_DATA:
+            return Object.assign({}, state, 
+                {
+                    userData: {
+                        user: action.payload.data,
+                        token: action.payload.token
+                    } 
+                });
         default:
             return state;
     }

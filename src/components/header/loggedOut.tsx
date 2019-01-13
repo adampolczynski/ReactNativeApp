@@ -41,14 +41,11 @@ export class HeaderLoggedOut extends Component {
   }
   
   render() {
-    let pic = {
-      uri:
-        'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
+    
     return (
       <View style={[styles.row]}>
         <View style={{flex: 0.2}}>
-            <Image source={pic} style={styles.image} />
+            <Image source={{}} style={styles.image} />
         </View>
         <View style={{height: 50,flex: 0.8, flexDirection: 'row', justifyContent: 'space-around',  alignSelf: 'flex-start', alignItems: 'center'}}>
         {/* <Icon.Button backgroundColor="#3b5998">

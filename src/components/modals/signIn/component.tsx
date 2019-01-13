@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ModalWrapper from '../modalWrapper';
 import axios from 'axios';
 import { store } from '../../../createReduxStore';
-import { loginAction, modalNameAction, modalVisibleAction } from '../../../actions/actions';
+import { loginAction, modalNameAction, modalVisibleAction, userDataAction } from '../../../actions/actions';
 
 const apiUrl: string = 'http://192.168.43.251:4000/api';
 
@@ -56,10 +56,12 @@ export class SignInModal extends React.Component<{},{ email: string, pwd: string
             }
         );
         if (x.data.success) {
-            store.dispatch(loginAction(x.data.data));
+            console.log(x.data)
+            store.dispatch(loginAction(true));
+            store.dispatch(userDataAction(x.data))
             store.dispatch(modalNameAction(''));
             store.dispatch(modalVisibleAction(false));
-            
+
             ToastAndroid.showWithGravity(
             'Logged into the life oportunity :)',
             ToastAndroid.SHORT,

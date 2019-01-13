@@ -1,4 +1,6 @@
+import { IUser } from "./IUser";
+
 export interface IUserData {
-    user: any;
+    user: IUser;
     token: string;
 }

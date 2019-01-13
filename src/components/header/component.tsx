@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { HeaderLoggedIn } from './loggedIn';
+import HeaderLoggedIn from './loggedIn';
 import { HeaderLoggedOut } from './loggedOut';
 
 import { connect } from 'react-redux';

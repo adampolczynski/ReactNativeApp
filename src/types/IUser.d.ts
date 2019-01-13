@@ -5,11 +5,13 @@ export interface IUser {
     fbId: string;
     name: string;
     surname: string;
-    password: string;
     email: string;
+    password: string;
+    about: string;
     gender: number;
     photo: string;
     fbPhoto: string;
+    points: number;
     activated: boolean;
     premium: boolean;
     interests: any[];// IInterest[];
