@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MainScreen } from './components/main';
+import MainScreen from './components/main';
 import { Font } from 'expo';
 import { store } from './createReduxStore';
 import { Provider } from 'react-redux';

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export class WelcomeModal extends Component<{ changeModal: Function }, { confirm: Function }> {
+export class WelcomeModal extends Component {
   constructor(props: any) {
     super(props);
   }
@@ -36,8 +36,7 @@ export class WelcomeModal extends Component<{ changeModal: Function }, { confirm
     return (
       <ModalWrapper 
       title={'sign in'}
-      hideText={'Got it, move on'}
-      changeModal={this.props.changeModal}>
+      hideText={'Got it, move on'}>
         <View style={styles.column}>
           <Text style={styles.text}>Welcome to the BackToLife application, made to integrate people in real life</Text>
           <Image source={pic} style={[styles.image]}/>

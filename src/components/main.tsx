@@ -5,8 +5,8 @@ import Header from './header/component';
 import { ModalConductor } from './modals/modalConductor';
 import { connect } from 'react-redux';
 
-export class MainScreen extends Component<{}, { isLoggedIn: boolean, currentModal: string, modalOpts: any }> {
-  constructor(props: { prop: boolean }) {
+class MainScreen extends Component {
+  constructor(props) {
     super(props);
 
     this.changeModal = this.changeModal.bind(this);
@@ -14,9 +14,8 @@ export class MainScreen extends Component<{}, { isLoggedIn: boolean, currentModa
   }
 
   componentDidMount() {
+    console.warn(this.props)
     //AppState.addEventListener('change', this._handleAppStateChange);
-    console.log(this.state)
-    console.log(JSON.stringify(this.props))
     // console.log('Main on mount, logged in: ' + store.getState().isLoggedIn);
     // console.log('Main on mount, local state logged in: ' + this.state.isLoggedIn);
 
@@ -40,18 +39,21 @@ export class MainScreen extends Component<{}, { isLoggedIn: boolean, currentModa
   render() {
     return (
       <View>
-        <ModalConductor changeModal={this.changeModal} currentModal={'asd'}></ModalConductor>        
-        <Header changeModal={this.changeModal} />
+        <ModalConductor currentModal={this.props.modalOpts.name}></ModalConductor>        
+        <Header />
         
       </View>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return { 
     isLoggedIn: state.isLoggedIn,
     modalOpts: state.modalOpts
   };
 }
-export default connect(mapStateToProps)(MainScreen);
+
+const MainScreenContainer = connect(mapStateToProps)(MainScreen);
+
+export default MainScreenContainer;

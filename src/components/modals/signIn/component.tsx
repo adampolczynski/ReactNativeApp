@@ -34,7 +34,7 @@ const styles = {
 //         logIn: () => dispatch(loginAction(true))
 //     }
 // }
-export class SignInModal extends React.Component<{ changeModal: Function, logIn: Function },{ email: string, pwd: string }> {
+export class SignInModal extends React.Component<{ logIn: Function },{ email: string, pwd: string }> {
     constructor(props: any) {
         super(props);
 
@@ -71,8 +71,7 @@ export class SignInModal extends React.Component<{ changeModal: Function, logIn:
         return (
             <ModalWrapper
                 title={'sign in'}
-                hideText={'Hide modal'}
-                changeModal={this.props.changeModal}>
+                hideText={'Hide modal'}>
                 <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-around' }}>
                     
                     <View>

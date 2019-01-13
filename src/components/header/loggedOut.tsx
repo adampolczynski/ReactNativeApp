@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export class HeaderLoggedOut extends Component<{ changeModal: Function }> {
+export class HeaderLoggedOut extends Component {
   constructor(props: {}) {
     super(props);
     this.signIn = this.signIn.bind(this);

@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export class HeaderLoggedIn extends Component<{ changeModal: Function }> {
+export class HeaderLoggedIn extends Component {
   constructor(props: {}) {
     super(props);
   }

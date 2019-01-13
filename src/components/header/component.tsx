@@ -7,7 +7,7 @@ import { HeaderLoggedOut } from './loggedOut';
 
 import { connect } from 'react-redux';
 
-class Header extends Component<{ changeModal: Function, isLoggedIn: boolean }, {}> {
+class Header extends Component<{ isLoggedIn: boolean }, {}> {
   constructor(props: { isLoggedIn: boolean }) {
     super(props);
   }
@@ -17,11 +17,11 @@ class Header extends Component<{ changeModal: Function, isLoggedIn: boolean }, {
 
     if (this.props.isLoggedIn) {
         return(
-            <HeaderLoggedIn changeModal={this.props.changeModal}/>
+            <HeaderLoggedIn />
         )
     } else {
         return(
-            <HeaderLoggedOut changeModal={this.props.changeModal}/>
+            <HeaderLoggedOut />
         )
     }
   }

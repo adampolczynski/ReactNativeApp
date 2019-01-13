@@ -14,6 +14,8 @@ const initialState = {
  };
 
 export default (state = initialState, action: any) => {
+    console.log('root reducer')
+    console.log(JSON.stringify(initialState))
     switch (action.type) {
         case USER_LOGIN:
             return Object.assign({}, state, {

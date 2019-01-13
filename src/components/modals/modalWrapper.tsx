@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 // import { PropTypes } from 'prop-types';
 
 class ModalWrapper extends Component<
-  { changeModal: Function, hideText: string, title: string },
+  { hideText: string, title: string },
   { modalVisible: boolean }
 > {
   constructor(props: any) {
@@ -23,7 +23,6 @@ class ModalWrapper extends Component<
 
   setModalVisible(vis: boolean) {
     this.setState({ modalVisible: vis });
-    this.props.changeModal('');
   }
 
   render() {
