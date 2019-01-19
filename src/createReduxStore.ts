@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
-import { IState } from './types/IState';
-import { IUserData } from './types/IUserData';
 
 
 const store = createStore(
@@ -11,7 +9,8 @@ const store = createStore(
   );
 
 const handleChange = () => {
-  console.log('Redux state changed');
+  // console.log('Redux state changed');
+  // console.log(store.getState());
   const currentState = store.getState();
   if (currentState.isLoggedIn) {
   } else {

@@ -3,24 +3,16 @@
 // import simpleReducer from './simpleReducer';
 // import isLoggedIn from './isLoggedInReducer';
 // import userData from './userDataReducer';
-import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME, USER_DATA, GLOBAL_INTERESTS, USER_INTERESTS } from '../actions/acion-types';
+import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME, USER_DATA, GLOBAL_INTERESTS, USER_INTERESTS, LOCATION_ACCESS } from '../actions/acion-types';
+import { IState } from '../types/IState';
 
-const initialState = {
+const initialState: IState = {
     isLoggedIn: false,
     modalOpts: {
-        visible: true,
-        name: 'WELCOME'
+        visible: false,
+        name: ''
     },
-    userData: {
-        user: {
-            name: 'asd',
-            surname: 'asddsds',
-            email: 'asdasdas'
-        },
-        token: 'asdasdasdasddsaas',
-        interests: []
-    },
-    interests: []
+    locationAccess: false
 };
 
 export default (state = initialState, action: any) => {
@@ -61,6 +53,11 @@ export default (state = initialState, action: any) => {
             return Object.assign({}, state,
             {
                 interests: action.payload
+            })
+        case LOCATION_ACCESS:
+            return Object.assign({} , state,
+            {
+                locationAccess: action.payload
             })
         default:
             return state;

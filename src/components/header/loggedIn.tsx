@@ -11,8 +11,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingTop: 40,
-    height: 100
   },
   text: {
     textAlign: 'center'
@@ -25,11 +23,7 @@ const styles = StyleSheet.create({
   }
 });
 export class HeaderLoggedIn extends Component<{ userData: IUserData},{}> {
-  constructor(props: {}) {
-    super(props);
-  }
 
-  
   render() {
     let pic = {
       uri:

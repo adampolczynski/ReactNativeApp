@@ -1,18 +1,33 @@
 import * as React from 'react';
+import { Platform } from 'react-native';
 import MainScreen from './components/main';
-import { Font } from 'expo';
+import { Font, Constants, Permissions, SQLite } from 'expo';
 import { store } from './createReduxStore';
 import { Provider } from 'react-redux';
 import axios from 'axios';
+import { locationAccessAction } from './actions/actions';
+import { makeTransaction } from './db';
 
-API_URL = 'http://192.168.2.129:4000/api';
+API_URL = 'http://192.168.43.251:4000/api';
 
 class EntryComponent extends React.Component<{}, {}> {
     constructor(props: {}) {
         super(props);
     }
 
-    async componentDidMount() {
+    componentWillMount() {
+
+        // wont go in emulator
+        if (Platform.OS === 'android' && !Constants.isDevice) {
+            console.warn('Location service wont go on emulator');
+        } else {
+            this._getLocationAsync();
+        }
+
+        makeTransaction('CREATE TABLE IF NOT EXISTS btlinfo (id INTEGER PRIMARY KEY AUTOINCREMENT, authToken VARCHAR(50));')
+
+    }
+    componentDidMount() {
         Font.loadAsync({
             'FontAwesome': require('react-native-vector-icons/Fonts/FontAwesome.ttf'),
         });
@@ -29,15 +44,15 @@ class EntryComponent extends React.Component<{}, {}> {
         //         }
         //     }
         // );
+    }
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position)
-        }, (err) => {
-            console.error(err)
-        }, {});
-
-        // console.log(x.data)
-        // console.log(store.getState())
+    _getLocationAsync = async () => {
+        let { status } = await Permissions.askAsync(Permissions.LOCATION);
+        if (status !== 'granted') {
+            console.warn('Permission for location not granted');
+        } else {
+            store.dispatch(locationAccessAction(true));
+        }
     }
     render() {
         return (

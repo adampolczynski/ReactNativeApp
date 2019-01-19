@@ -11,15 +11,11 @@ import {
 import { connect } from 'react-redux';
 import { modalVisibleAction } from '../../actions/actions';
 import { store } from '../../createReduxStore';
+import { IModalOpts } from '../../types/IModalOpts';
 
 // import { PropTypes } from 'prop-types';
 
-class ModalWrapper extends Component<{ modalOpts: { visible: boolean, name: string }, hideText: string },{}> {
-  constructor(props: any) {
-    super(props);
-    this.state = { modalVisible: true };
-  }
-
+class ModalWrapper extends Component<{ modalOpts: IModalOpts, hideText: string },{}> {
 
   render() {
     return (
