@@ -1,3 +1,10 @@
+
+# additional
+android/
+ios/
+assets/
+.expo/
+
 # OSX
 #
 .DS_Store
