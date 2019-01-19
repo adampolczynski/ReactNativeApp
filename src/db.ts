@@ -27,5 +27,7 @@ export const makeTransaction = async (sqlStatement: string) => {
         return Promise.resolve(result)
     } catch(error) {
         console.warn(error);
+
+        return Promise.reject(error)
     }
 }
