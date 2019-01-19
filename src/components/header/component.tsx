@@ -8,7 +8,7 @@ import { HeaderLoggedOut } from './loggedOut';
 import { connect } from 'react-redux';
 
 class Header extends Component<{ isLoggedIn: boolean }, {}> {
-  constructor(props: { isLoggedIn: boolean }) {
+  constructor(props) {
     super(props);
   }
 

@@ -1,33 +1,20 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { AppState, View, Button } from 'react-native';
 import Header from './header/component';
 import ModalConductor from './modals/modalConductor';
-import { connect } from 'react-redux';
-import { IModalOpts } from '../types/IModalOpts';
-import { modalNameAction } from '../actions/actions';
-import { store } from '../createReduxStore';
+import InterestsList from './interests/interestsList';
 
 class MainScreen extends Component<{ isLoggedIn: boolean },{}> {
-  constructor(props) {
-    super(props);
-
-  }
-
-  componentDidMount() {
-    console.warn(this.props)
-    //AppState.addEventListener('change', this._handleAppStateChange);
-    // console.log('Main on mount, logged in: ' + store.getState().isLoggedIn);
-    // console.log('Main on mount, local state logged in: ' + this.state.isLoggedIn);
-
-  }
-
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, flexDirection: 'column' }}>
         <ModalConductor/>        
-        <Header />
-        
+        <Header style={{ flex: 0.15, flexDirection: 'row' }}/>
+        <View style={{ flex: 0.85, flexDirection: 'row', flexWrap: 'wrap'}}>
+          <InterestsList />
+        </View>
       </View>
     );
   }
@@ -39,6 +26,4 @@ const mapStateToProps = (state: any) => {
   };
 }
 
-const MainScreenContainer = connect(mapStateToProps)(MainScreen);
-
-export default MainScreenContainer;
+export default connect(mapStateToProps)(MainScreen);

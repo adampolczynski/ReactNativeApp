@@ -5,7 +5,7 @@ import { store } from './createReduxStore';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 
-const apiUrl: string = 'http://192.168.43.251:4000/api';
+API_URL = 'http://192.168.2.129:4000/api';
 
 class EntryComponent extends React.Component<{}, {}> {
     constructor(props: {}) {
@@ -18,20 +18,26 @@ class EntryComponent extends React.Component<{}, {}> {
         });
 
         // check if token in storage is valid 
-        const x = await axios.post(
-            `${apiUrl}/login/TOKEN`,
-            { 
-                token: 'asdsad' 
-            },
-            {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            }
-        );
+        // const x = await axios.post(
+        //     `${API_URL}/login/TOKEN`,
+        //     { 
+        //         token: 'asdsad' 
+        //     },
+        //     {
+        //         headers: {
+        //             'content-type': 'application/json'
+        //         }
+        //     }
+        // );
 
-        console.log(x.data)
-        console.log(store.getState())
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position)
+        }, (err) => {
+            console.error(err)
+        }, {});
+
+        // console.log(x.data)
+        // console.log(store.getState())
     }
     render() {
         return (

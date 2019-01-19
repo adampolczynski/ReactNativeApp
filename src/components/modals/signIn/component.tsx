@@ -7,8 +7,6 @@ import axios from 'axios';
 import { store } from '../../../createReduxStore';
 import { loginAction, modalNameAction, modalVisibleAction, userDataAction } from '../../../actions/actions';
 
-const apiUrl: string = 'http://192.168.43.251:4000/api';
-
 const styles = {
     searchSection: {
         flex: 1,
@@ -44,7 +42,7 @@ export class SignInModal extends React.Component<{},{ email: string, pwd: string
 
     async signIn(method: string) {
         const x = await axios.post(
-            `${apiUrl}/login`, 
+            `${API_URL}/login`, 
             {
                email: this.state.email,
                password: this.state.pwd

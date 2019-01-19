@@ -4,6 +4,8 @@ declare global {
     }
 
     let Moment: any;
+
+    let API_URL: string;
 }
 
 export {};

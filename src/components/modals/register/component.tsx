@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Text, TextInput } from 'react-native';
 import ModalWrapper from '../modalWrapper';
 
-export class RegisterModal extends React.Component<{ changeModal: Function },{ email: string, pwd: string, secPwd: string }> {
+export class RegisterModal extends React.Component<{},{ email: string, pwd: string, secPwd: string }> {
     constructor(props: any) {
         super(props);
         console.log('register modal');

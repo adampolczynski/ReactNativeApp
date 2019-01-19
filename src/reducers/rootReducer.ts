@@ -3,7 +3,7 @@
 // import simpleReducer from './simpleReducer';
 // import isLoggedIn from './isLoggedInReducer';
 // import userData from './userDataReducer';
-import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME, USER_DATA } from '../actions/acion-types';
+import { USER_LOGIN, MODAL_VISIBLE, MODAL_NAME, USER_DATA, GLOBAL_INTERESTS, USER_INTERESTS } from '../actions/acion-types';
 
 const initialState = {
     isLoggedIn: false,
@@ -17,13 +17,13 @@ const initialState = {
             surname: 'asddsds',
             email: 'asdasdas'
         },
-        token: 'asdasdasdasddsaas'
-    }
+        token: 'asdasdasdasddsaas',
+        interests: []
+    },
+    interests: []
 };
 
 export default (state = initialState, action: any) => {
-    console.log('root reducer')
-    console.log(JSON.stringify(initialState))
     switch (action.type) {
         case USER_LOGIN:
             return Object.assign({}, state, 
@@ -52,6 +52,16 @@ export default (state = initialState, action: any) => {
                         token: action.payload.token
                     } 
                 });
+        case GLOBAL_INTERESTS:
+            return Object.assign({}, state,
+            {
+                interests: action.payload
+            })
+        case USER_INTERESTS:
+            return Object.assign({}, state,
+            {
+                interests: action.payload
+            })
         default:
             return state;
     }
